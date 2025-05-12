@@ -1,13 +1,16 @@
-// src/index.ts
 import logger from "./logger";
 
-// Function to log a message
 const logMessage = () => {
   logger.info(`Log entry at ${new Date().toISOString()}`);
 };
 
-// Run immediately when invoked
 logMessage();
 
-// Optional: Log startup
 logger.info("Script executed");
+
+setInterval(() => {}, 1000 * 60);
+
+process.on("SIGINT", () => {
+  logger.info("Script stopped");
+  process.exit(0);
+});
